@@ -1,29 +1,15 @@
 import React from 'react';
-import {render} from 'react-dom';
-import Column from './components/Column';
-import styled from 'styled-components';
+import { render } from 'react-dom';
+import App from './App.jsx';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import rootReducer from './reducers'
 
-const Columns = styled.div`
-  display: flex;
-  flex-direction: columns;
-`;
+const store = createStore(rootReducer)
 
-const users = [
-  {avatar: 'avatar1', name:'user1 alberto mendosaaa'},
-  {avatar: 'avatar2', name:'user2'}
-];
-
-class App extends React.Component {
-  render () {
-    return <div>
-      <h1>Simple Hiring Manager</h1>
-      <Columns>
-        <Column title="Applied" users={users} position="first" />
-        <Column title="Interviewing" users={users} />
-        <Column title="Hired" users={users} position="last" />
-      </Columns>
-      </div>;
-  }
-}
-
-render(<App/>, document.getElementById('app'));
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>
+    , document.getElementById('app')
+);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const AVATAR_SIZE = '45px';
@@ -50,16 +51,34 @@ const Right = styled.div`
   width: 100%;
 `;
 
-const Card = ({avatar, name, position}) => 
-  <CardStyle>
+const Card = ({avatar, name, position, onUpdateUser}) => {
+  const updateUser = offset => onUpdateUser({
+    avatar,
+    name,
+    position: position + offset
+  });
+
+  return <CardStyle>
     <User>
       <Avatar src={avatar} />
       <Name>{name}</Name>
     </User>
     <Controls>
-      { position !== 'first' && <Left><button>&lt;</button></Left> }
-      { position !== 'last' && <Right><button>&gt;</button></Right> }
+      { position !== 0 &&
+        <Left><button onClick={updateUser(-1)}>&lt;</button></Left>
+      }
+      { position !== 2 &&
+        <Right><button onClick={updateUser(1)}>&gt;</button></Right>
+      }
     </Controls>
-  </CardStyle>
+  </CardStyle>;
+};
+
+Card.propTypes = {
+  avatar: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  position: PropTypes.number,
+  onUpdateUser: PropTypes.func.isRequired
+};
 
 export default Card;
