@@ -25,7 +25,8 @@ const Name =  styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
-  font-size: 30px;
+  text-align: center;
+  font-size: 20px;
 `;
 
 const Controls = styled.div`
@@ -35,15 +36,29 @@ const Controls = styled.div`
   justify-content: space-between;
 `;
 
-const Card = ({avatar, name}) => 
+const Left = styled.div`
+  display: flex;
+  flex-direction: columns;
+  justify-content: flex-start;
+  width: 100%;
+`;
+
+const Right = styled.div`
+  display: flex;
+  flex-direction: columns;
+  justify-content: flex-end;
+  width: 100%;
+`;
+
+const Card = ({avatar, name, position}) => 
   <CardStyle>
     <User>
       <Avatar src={avatar} />
       <Name>{name}</Name>
     </User>
     <Controls>
-      <button>&lt;</button>
-      <button>&gt;</button>
+      { position !== 'first' && <Left><button>&lt;</button></Left> }
+      { position !== 'last' && <Right><button>&gt;</button></Right> }
     </Controls>
   </CardStyle>
 
