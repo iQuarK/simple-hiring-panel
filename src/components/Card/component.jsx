@@ -28,6 +28,7 @@ const Name =  styled.div`
   display: flex;
   text-align: center;
   font-size: 20px;
+  text-transform: capitalize;
 `;
 
 const Controls = styled.div`
@@ -44,19 +45,20 @@ const Left = styled.div`
   width: 100%;
 `;
 
-const Right = styled.div`
+export const Right = styled.div`
   display: flex;
   flex-direction: columns;
   justify-content: flex-end;
   width: 100%;
 `;
 
-const Card = ({avatar, name, position, onUpdateUser}) => {
-  const updateUser = offset => onUpdateUser({
-    avatar,
-    name,
+const Card = ({user, position, onUpdateUser}) => {
+  const updateUser = (offset) => onUpdateUser({
+    ...user,
     position: position + offset
   });
+
+  const {avatar, name} = user;
 
   return <CardStyle>
     <User>
@@ -65,18 +67,17 @@ const Card = ({avatar, name, position, onUpdateUser}) => {
     </User>
     <Controls>
       { position !== 0 &&
-        <Left><button onClick={updateUser(-1)}>&lt;</button></Left>
+        <Left><button onClick={() => updateUser(-1)}>&lt;</button></Left>
       }
       { position !== 2 &&
-        <Right><button onClick={updateUser(1)}>&gt;</button></Right>
+        <Right><button onClick={() => updateUser(1)}>&gt;</button></Right>
       }
     </Controls>
   </CardStyle>;
 };
 
 Card.propTypes = {
-  avatar: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
   position: PropTypes.number,
   onUpdateUser: PropTypes.func.isRequired
 };

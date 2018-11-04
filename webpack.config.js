@@ -2,8 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const BUILD_DIR = path.resolve(__dirname, 'dist/client/');
-const APP_DIR = path.resolve(__dirname, 'src/client/app');
+const BUILD_DIR = path.resolve(__dirname, 'dist/');
+const APP_DIR = path.resolve(__dirname, 'src/');
 
 let config = {
   entry: APP_DIR + '/index.jsx',
@@ -23,10 +23,9 @@ let config = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'src/client/index.html'
+      template: 'src/index.html'
     })
   ]
 };
 
 module.exports = config;
-

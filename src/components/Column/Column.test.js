@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Column from './component.jsx';
+import Column, { Title } from './component.jsx';
 import Card from '../Card';
 
 describe('Column Suite', () => {
@@ -9,7 +9,7 @@ describe('Column Suite', () => {
     const users = [];
     const component = shallow(<Column title={title} users={users} />);
 
-    expect(component.contains(<h2>{title}</h2>)).toBe(true);
+    expect(component.contains(<Title>{title}</Title>)).toBe(true);
     expect(component.find(Card)).toHaveLength(0);
   });
   test('should render correctly with > 0 users', () => {
@@ -20,7 +20,7 @@ describe('Column Suite', () => {
     ];
     const component = shallow(<Column title={title} users={users} />);
 
-    expect(component.contains(<h2>{title}</h2>)).toBe(true);
+    expect(component.contains(<Title>{title}</Title>)).toBe(true);
     expect(component.find(Card)).toHaveLength(2);
   });
 });

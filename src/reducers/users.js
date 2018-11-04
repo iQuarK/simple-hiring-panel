@@ -11,19 +11,20 @@ const users = (state = initialState, action) => {
         {
           ...user,
           position: 0,
-          avatar: user && user.picture ? user.picture.thumbnail : ""
+          avatar: user && user.picture ? user.picture.thumbnail : "",
+          name: `${user.name.first} ${user.name.last}`
         }
       ));
       return { ...state, list: [ ...state.list, ...users ] };
     case 'UPDATE_USER':
-      let {list} = state;
-      const index = _findIndex(list, item =>
-        item.id.value === action.user.id
+      const index = _findIndex(state.list, item =>
+        item.id.value === action.user.id.value
       );
+
       if (index > -1) {
         return { ...state, list: [
           ...state.list.slice(0, index),
-          action.user,
+          { ...state.list[index], position: action.user.position },
           ...state.list.slice(index+1, state.list.length)
         ] };
       }
