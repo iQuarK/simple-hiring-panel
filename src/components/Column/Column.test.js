@@ -15,8 +15,8 @@ describe('Column Suite', () => {
   test('should render correctly with > 0 users', () => {
     const title = 'column title';
     const users = [
-      {avatar: 'avatar1', name:'user1'},
-      {avatar: 'avatar2', name:'user2'}
+      {avatar: 'avatar1', name:'user1', location: { city: 'Transilvania'}},
+      {avatar: 'avatar2', name:'user2', location: { city: 'Molonia'}}
     ];
     const component = shallow(<Column title={title} users={users} />);
 

@@ -7,7 +7,8 @@ describe('Card Suite', () => {
   test('should render correctly', () => {
     const avatar = 'avatar_url';
     const name = 'John Doe';
-    const component = shallow(<Card user={{avatar, name, position: 0}}
+    const location = { city: 'transilvania'};
+    const component = shallow(<Card user={{avatar, name, location, position: 0}}
       onUpdateUser={jest.fn()} />);
 
     expect(component.children().find(Avatar).prop('src')).toBe(avatar);
