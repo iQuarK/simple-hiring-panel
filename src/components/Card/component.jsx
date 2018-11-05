@@ -22,32 +22,37 @@ export const Avatar = styled.img`
   border-radius: 25px;
 `;
 
-const Name =  styled.div`
+const Meta = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
   text-align: center;
   font-size: 20px;
   text-transform: capitalize;
+  flex-direction: column;
+`;
+
+const Location = styled.div`
+  font-size: 13px;
 `;
 
 const Controls = styled.div`
   margin-top: 10px;
   display: flex;
-  flex-direction: columns;
+  flex-direction: row;
   justify-content: space-between;
 `;
 
 const Left = styled.div`
   display: flex;
-  flex-direction: columns;
+  flex-direction: row;
   justify-content: flex-start;
   width: 100%;
 `;
 
 export const Right = styled.div`
   display: flex;
-  flex-direction: columns;
+  flex-direction: row;
   justify-content: flex-end;
   width: 100%;
 `;
@@ -58,12 +63,15 @@ const Card = ({user, position, onUpdateUser}) => {
     position: position + offset
   });
 
-  const {avatar, name} = user;
+  const {avatar, name, location: { city }} = user;
 
   return <CardStyle>
     <User>
       <Avatar src={avatar} />
-      <Name>{name}</Name>
+      <Meta>
+        <div>{name}</div>
+        <Location>city: {city}</Location>
+      </Meta>
     </User>
     <Controls>
       { position !== 0 &&

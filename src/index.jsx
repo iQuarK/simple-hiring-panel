@@ -13,7 +13,9 @@ const store = createStore(
 );
 
 // receives the data from the reducer to make the list of orders
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+    users: state.users.list
+});
 
 // maps the action into a function inside the component
 const mapDispatchToProps = dispatch => ({

@@ -14,24 +14,18 @@ export const Title = styled.h2`
   text-align: center;
 `;
 
-class Column extends Component {
-  componentWillReceiveProps(nextProps, nextState) {
-    console.log('willreceive', nextProps, nextState);
-  }
-  render() {
-    const {title, users, position} = this.props;
-    const filteredUsers = _filter(users, user => user.position === position);
+const Column = ({title, users, position}) => {
+  const filteredUsers = _filter(users, user => user.position === position);
 
-    return (<Wrapper>
-      <Title>{title}</Title>
-      { !!filteredUsers && filteredUsers.map((user, idx) =>
-          <Card key={idx}
-            user={user}
-            position={user.position} />
-        )
-      }
-    </Wrapper>);
-  }
+  return (<Wrapper>
+    <Title>{title}</Title>
+    { !!filteredUsers && filteredUsers.map((user, idx) =>
+        <Card key={idx}
+          user={user}
+          position={user.position} />
+      )
+    }
+  </Wrapper>);
 }
 
 Column.propTypes = {
